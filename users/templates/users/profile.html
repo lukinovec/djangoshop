@@ -1,23 +1,32 @@
 {% extends "shop/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="content-section border col-sm-8">
-	<div class="media">
-		<img class="rounded-circle account-img" src="{{ user.profile.image.url }}" style="width:200px; height:200px">
-		<div class="media-body">
-			<h2 class="account-heading pt-3">{{ user.username }}</h2>
-			<p class="text-muted"></p>
+<div class="row">
+	<div class="content-section border col-sm-8">
+		<div class="media">
+			<div style="width: 210px; height: 210px" class="border text-center">
+				<img class="account-img" src="{{ user.profile.image.url }}">
+			</div>
+			<div class="media-body">
+				<h2 class="account-heading pt-3 pl-2">{{ user.username }}</h2>
+			</div>
 		</div>
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4 mt-4">Profile Info</legend>
+				{{ u_form|crispy }}
+				{{ p_form|crispy }}
+			</fieldset>
+			<div class="form-group">
+				<button class="btn btn-outline-info">Update</button>
+			</div>
+		</form>
 	</div>
-	<form method="POST" enctype="multipart/form-data">
-		{% csrf_token %}
-		<fieldset class="form-group">
-			<legend class="border-bottom mb-4 mt-4">Profile Info</legend>
-			{{ p_form|crispy }}
-		</fieldset>
-		<div class="form-group">
-			<button class="btn btn-outline-info">Update</button>
-		</div>
-	</form>
+	<div class="col-sm-4 border">
+		<legend class="border-bottom mt-2">
+			Your items
+		</legend>			
+	</div>
 </div>
 {% endblock content %}
