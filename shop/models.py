@@ -26,3 +26,6 @@ class Item(models.Model):
 			output_size = (200, 200)
 			img.thumbnail(output_size)
 			img.save(self.image.path)
+
+class ItemOwned(Item):
+	owner = models.ForeignKey(User, on_delete=models.CASCADE)

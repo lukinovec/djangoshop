@@ -40,7 +40,7 @@ class ItemDetailView(DetailView):
 	model = Item
 
 
-class ItemCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class ItemCreateView(CreateView):
 	model = Item
 	fields = ['itemname', 'price', 'about', 'image']
 
