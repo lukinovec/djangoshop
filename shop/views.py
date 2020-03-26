@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
 from .models import Item
+from users.models import Profile
 
 
 items = [
@@ -87,20 +88,23 @@ class ItemDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 			return False
 
 # Transfer item ownership to the buyer
-class BuyView(LoginRequiredMixin, UpdateView):
-	model = Item
-	success_message = "Item bought!"
-
-	def buy(self, request, *args, **kwargs):
-		self.object = self.get_object()
-		user = self.request.user
-		if user.profile.currency >= self.object.price:
-			user.profile.currency -= self.object.price
-			self.object.seller = user.username
-			self.object.for_sale = False
-		else:
-			messages.error(request, 'Insufficient funds.')
-
+def buy(request, pk):
+	item = Item.objects.filter(pk=pk).first()
+	profile = Profile.objects.filter(user=item.seller).first()
+	user = request.user
+	if user.profile.currency >= item.price:
+		user.profile.currency = (user.profile.currency - item.price)
+		profile.currency = profile.currency + item.price
+		item.save()
+		profile.save()
+		item.seller=user
+		item.for_sale=False
+		item.save()
+		user.save()
+		messages.success(request, 'Item received, your balance: ' + str(user.profile.currency))
+	else:
+		messages.warning(request, 'Insufficient funds.')
+	return redirect('shop')
 
 # Put an item up for sale
 #class SellView():

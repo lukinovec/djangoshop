@@ -16,8 +16,10 @@
 			<img src="/media/{{ item.image }}" class="rounded mx-auto d-flex flex-wrap justify-content-center" style="width: 200px; height: 200px">
 			<h3> {{ item.price }} Kč </h3>
 			<p> {{ item.about }} </p>
-			<a class="btn btn-outline-primary" href="#">Buy</a>
+			{% if item.seller != user %}
+			<a class="btn btn-outline-primary" href="{% url 'item-buy' item.id %}">Buy</a>
 			<small class="text-muted" style="margin-bottom: 3%"> {{ item.date_posted }} </small>
+			{% endif %}
 		</div>
 	</div>	
 </div>
