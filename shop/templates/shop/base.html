@@ -34,7 +34,8 @@
 				</div>
 				<div class="nav navbar-nav ml-auto">
 					{% if user.is_authenticated %}
-					<a class="nav-item nav-link pr-3 pl-3 border-right" style="color: black">Logged as {{ user.username }}</a>
+					<a class="nav-item nav-link pr-3 pl-3 border-right" style="color: black">{{ user.username }}'s balance: {{ user.profile.currency }} cringecoins</a>
+					<p class="text-muted"></p>
 					<a class="nav-item nav-link pr-3 pl-3 border-right" href="{% url 'profile' %}">Profile</a>
 					<a class="nav-item nav-link pr-3 pl-3" href="{% url 'logout' %}">Log Out</a>
 					{% else %}

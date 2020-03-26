@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 {% for item in items %}
+{% if item.for_sale == True %}
 <div class="row mb-3">
 	<div class="col-sm-3 border text-center">
 		<h3 style="margin-top: 25%"><a href="#">{{ item.seller }}</a> is the seller</h3>
@@ -10,14 +11,16 @@
 		<p class="text-muted">{{ item.seller.profile.description }}</p>
 	</div>
 	<div class="col-sm-9 border">
-		<div class="text-center ml-4 mr-4">
+		<div class="text-center ml-4 mr-4 mb-2">
 			<a href="{% url 'item-detail' item.id  %}"><h1 style="margin-top: 3%"> {{ item.itemname }} </h1></a>
 			<img src="/media/{{ item.image }}" class="rounded mx-auto d-flex flex-wrap justify-content-center" style="width: 200px; height: 200px">
 			<h3> {{ item.price }} Kč </h3>
 			<p> {{ item.about }} </p>
+			<a class="btn btn-outline-primary" href="#">Buy</a>
 			<small class="text-muted" style="margin-bottom: 3%"> {{ item.date_posted }} </small>
 		</div>
 	</div>	
 </div>
+{% endif %}
 {% endfor %}
 {% endblock content %}

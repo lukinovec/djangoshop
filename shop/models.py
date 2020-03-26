@@ -12,6 +12,7 @@ class Item(models.Model):
 	image = models.ImageField(upload_to='item_pics', default='default.png')
 	date_posted = models.DateField(default=timezone.now)
 	date_edited = models.DateField(auto_now=True)
+	for_sale = models.BooleanField(default=False)
 
 	def __str__(self):
 		return self.itemname

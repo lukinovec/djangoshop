@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegisterForm, ProfileUpdateForm, UserUpdateForm
+from shop.models import Item
 
 
 def register(request):
@@ -20,6 +21,7 @@ def register(request):
 
 @login_required
 def profile(request):
+	items = Item.objects.filter(seller = request.user.id)
 	if request.method == 'POST':
 		p_form = ProfileUpdateForm(request.POST, 
 								   request.FILES,
@@ -37,7 +39,7 @@ def profile(request):
 			
 	context = {
 		'p_form': p_form,
-		'u_form': u_form
+		'u_form': u_form,
+		'items': items
 	}
-
 	return render(request, 'users/profile.html', context)

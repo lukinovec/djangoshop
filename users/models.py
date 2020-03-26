@@ -7,6 +7,7 @@ class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	image = models.ImageField(default='default.png', upload_to='profile_pics')
 	description = models.TextField(default='tento člověk nám o sobě absolutně nic neřekl, nevěřte mu', max_length=200)
+	currency = models.IntegerField(default=1000)
 
 	def __str__(self):
 		return f'{self.user.username} Profile'

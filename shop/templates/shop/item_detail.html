@@ -18,11 +18,14 @@
 		</div>
 	</div>
 	<div class="col-sm-2 text-center" style="width: 100%">
+		
 		<div style="margin-top: 150%; margin-right: 25%">
-			<a href="#"><button style="width: 100%; margin-bottom:10%" class="btn btn-primary"> Edit item </button></a>
+			{% if user.username == object.seller.username %}
+			<a href="{% url 'item-update' object.id %}"><button style="width: 100%; margin-bottom:10%" class="btn btn-primary"> Edit item </button></a>
 			<a href="{% url 'item-delete' object.id %}"><button style="width: 100%;" class="btn btn-danger"> Delete item </button></a>
-			
+			{% endif %}
 		</div>
+		
 	</div>
 </div>
 {% endblock content %}

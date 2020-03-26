@@ -22,11 +22,30 @@
 				<button class="btn btn-outline-info">Update</button>
 			</div>
 		</form>
+
 	</div>
 	<div class="col-sm-4 border">
 		<legend class="border-bottom mt-2">
 			Your items
-		</legend>			
+		</legend>
+		{% for item in items %}
+			<div class="row">
+				<div class="col-sm-5">
+					<p>{{ item.itemname }}</p>
+				</div>
+				<div class="col-sm-4">
+					<p class="text-muted">{{ item.price }},-</p>
+				</div>
+				<div class="col-sm-3">
+				{% if item.for_sale == True %}
+					<a href="{% url 'item-return' item.id %}"><button> Return </button></a>
+				{% endif %}
+				{% if item.for_sale == False %}
+					<a href="{% url 'item-sell' item.id %}"><button> Sell </button></a>
+				{% endif %}
+				</div>
+			</div>
+		{% endfor %}
 	</div>
 </div>
 {% endblock content %}
