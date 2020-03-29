@@ -127,4 +127,4 @@ def shop(request):
 	context = {
 	'items': Item.objects.all(),
 	}
-	return render(request, 'shop/shop.html', context, {'title': 'Shop'})
+	return render(request, 'shop/shop.html', context)
