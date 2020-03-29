@@ -4,7 +4,7 @@
 <div class="row border">
 	<div class="col-sm-3 border text-center">
 		<h3 style="margin-top: 25%"><a href="#">{{ object.seller }}</a> is the seller</h3>
-		<img class="rounded-circle mx-auto d-flex flex-wrap justify-content-center" src="{{ object.seller.profile.image.url }}" style="width:50%">
+		<img class="mx-auto d-flex flex-wrap justify-content-center" src="{{ object.seller.profile.image }}" style="width:50%; height:50%">
 		<p class="text-muted">{{ object.seller.profile.description }}</p>
 	</div>
 	
@@ -12,7 +12,7 @@
 		<div class="text-center ml-4 mr-4">
 			<h1 style="margin-top: 3%"> {{ object.itemname }} </h1>
 			<img src="{{ object.image }}" class="rounded" style="width: 200px; height: 200px">
-			<h3> {{ object.price }} Kč </h3>
+			<h3> {{ object.price }} CC </h3>
 			<p> {{ object.about }} </p>
 			<small class="text-muted" style="margin-bottom: 3%"> {{ object.date_posted }} </small>
 		</div>
