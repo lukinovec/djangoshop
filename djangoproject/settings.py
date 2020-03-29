@@ -25,7 +25,7 @@ SECRET_KEY = '#l8j2oyvpt!n*p^b06!%l5abh1)#mibg0u5m++y7-!x0prex3*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://cooldjangoshop.herokuapp.com/']
 
 
 # Application definition
