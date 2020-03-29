@@ -5,17 +5,10 @@ from PIL import Image
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	image = models.ImageField(default='default.png', upload_to='profile_pics')
+	image = models.CharField(default='https://lh3.googleusercontent.com/yVQO8bmGhYjQHYATrXQeaswpZawKBWuiSx1vd4skj2TLMT-JGj8WfPiYFSiULKt0Pg420-zMy_BK7EXV4OTk=s400', max_length=300)
 	description = models.TextField(default='tento člověk nám o sobě absolutně nic neřekl, nevěřte mu', max_length=200)
 	currency = models.IntegerField(default=1000)
 
 	def __str__(self):
 		return f'{self.user.username} Profile'
 
-	def save(self, *args, **kwargs):
-		super(Profile, self).save(*args, **kwargs)
-		image = Image.open(self.image.path)
-		if (image.height > 200 or image.width > 200) or (image.height < 200 or image.width < 200):
-			output_size = (200, 200)
-			image.thumbnail(output_size)
-			image.save(self.image.path)

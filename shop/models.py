@@ -9,7 +9,7 @@ class Item(models.Model):
 	itemname = models.CharField(max_length=100)
 	price = models.IntegerField()
 	about = models.TextField(default="sample text")
-	image = models.ImageField(upload_to='item_pics', default='default.png')
+	image = models.CharField(default="https://ih1.redbubble.net/image.770583657.2123/flat,750x1000,075,f.u1.jpg", max_length=300)
 	date_posted = models.DateField(default=timezone.now)
 	date_edited = models.DateField(auto_now=True)
 	for_sale = models.BooleanField(default=False)
@@ -20,13 +20,6 @@ class Item(models.Model):
 	def get_absolute_url(self):
 		return reverse('item-detail', kwargs={'pk': self.pk})
 
-	def save(self):
-		super().save()
-		img = Image.open(self.image.path)
-		if (img.height > 200 or img.width > 200) or (img.height < 200 or img.width < 200):
-			output_size = (200, 200)
-			img.thumbnail(output_size)
-			img.save(self.image.path)
 
 class ItemOwned(Item):
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
