@@ -29,7 +29,7 @@ def home(request):
 	context = {
 	'items': Item.objects.all(),
 	}
-	return render(request, 'shop/home.html', context, text/html)
+	return render(request, 'shop/home.html', context)
 
 
 class ItemListView(ListView):
