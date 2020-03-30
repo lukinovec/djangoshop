@@ -18,6 +18,7 @@
 			<p> {{ item.about }} </p>
 			{% if item.original != '<django.db.models.fields.related.ForeignKey>' %}
 			<small class="text-muted">Originally sold by {{ item.original }}</small>
+			{% endif %}
 			{% if item.seller != user %}
 			<a class="btn btn-outline-primary" href="{% url 'item-buy' item.id %}">Buy</a>
 			<small class="text-muted" style="margin-bottom: 3%"> {{ item.date_posted }} </small>
