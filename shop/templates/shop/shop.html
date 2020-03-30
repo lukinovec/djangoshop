@@ -11,7 +11,7 @@
 		<p class="text-muted">{{ item.seller.profile.description }}</p>
 	</div>
 	<div class="col-sm-9 border">
-		<div class="text-center ml-4 mr-4 mb-2">
+		<div class="text-center ml-4 mr-4 mb-2" style="overflow-y: scroll">
 			<a href="{% url 'item-detail' item.id  %}"><h1 style="margin-top: 3%"> {{ item.itemname }} </h1></a>
 			<img src="{{ item.image }}" class="rounded mx-auto d-flex flex-wrap justify-content-center" style="width: 200px; height: 200px">
 			<h3> {{ item.price }} CC </h3>
