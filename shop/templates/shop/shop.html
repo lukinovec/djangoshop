@@ -16,6 +16,7 @@
 			<img src="{{ item.image }}" class="rounded mx-auto d-flex flex-wrap justify-content-center" style="width: 200px; height: 200px">
 			<h3> {{ item.price }} CC </h3>
 			<p> {{ item.about }} </p>
+			{% if item.original != '<django.db.models.fields.related.ForeignKey>' %}
 			<small class="text-muted">Originally sold by {{ item.original }}</small>
 			{% if item.seller != user %}
 			<a class="btn btn-outline-primary" href="{% url 'item-buy' item.id %}">Buy</a>
