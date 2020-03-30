@@ -1,6 +1,7 @@
 {% extends "shop/base.html" %}
 {% load static %}
 {% block content %}
+{% if user.is_authenticated %}
 {% for item in items %}
 {% if item.for_sale == True %}
 <div class="row mb-3">
@@ -15,6 +16,7 @@
 			<img src="{{ item.image }}" class="rounded mx-auto d-flex flex-wrap justify-content-center" style="width: 200px; height: 200px">
 			<h3> {{ item.price }} CC </h3>
 			<p> {{ item.about }} </p>
+			<small class="text-muted">Originally sold by {{ item.original }}</small>
 			{% if item.seller != user %}
 			<a class="btn btn-outline-primary" href="{% url 'item-buy' item.id %}">Buy</a>
 			<small class="text-muted" style="margin-bottom: 3%"> {{ item.date_posted }} </small>
@@ -24,4 +26,7 @@
 </div>
 {% endif %}
 {% endfor %}
+{% else %}
+<h1>LOG IN RETARD</h1>
+{% endif %}
 {% endblock content %}

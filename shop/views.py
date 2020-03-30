@@ -49,6 +49,7 @@ class ItemCreateView(LoginRequiredMixin, CreateView):
 
 	def form_valid(self, form):
 		form.instance.seller = self.request.user
+		form.instance.original = self.request.user.username 
 		return super().form_valid(form)
 
 	def test_func(self):
