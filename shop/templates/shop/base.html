@@ -37,6 +37,7 @@
 					<a class="nav-item nav-link pr-3 pl-3 border-right" style="color: black">{{ user.username }}'s balance: {{ user.profile.currency }} cringecoins</a>
 					<p class="text-muted"></p>
 					<a class="nav-item nav-link pr-3 pl-3 border-right" href="{% url 'profile' %}">Profile</a>
+					<a class="nav-item nav-link pr-3 pl-3 border-right" href="#">Sale History</a>
 					<a class="nav-item nav-link pr-3 pl-3" href="{% url 'logout' %}">Log Out</a>
 					{% else %}
 					<a class="nav-item nav-link pr-3 border-right" href="{% url 'register' %}">Register</a>
