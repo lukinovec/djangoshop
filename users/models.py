@@ -10,7 +10,7 @@ class Profile(models.Model):
         max_length=300,
     )
     description = models.TextField(
-        default="Popisek profilu můžete změnit ", max_length=200
+        default="Popisek profilu můžete změnit na stránce profilu", max_length=200,
     )
     currency = models.IntegerField(default=1000)
 
