@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
-from PIL import Image
 
 
 class Item(models.Model):
@@ -17,10 +16,12 @@ class Item(models.Model):
     date_posted = models.DateField(default=timezone.now)
     date_edited = models.DateField(auto_now=True)
     for_sale = models.BooleanField(default=True)
-    original = models.CharField(max_length=200)
+    original = models.CharField(max_length=200)  # Original seller
 
+    # When the object is printed, display its itemname
     def __str__(self):
         return self.itemname
 
+    # Get URL for item details
     def get_absolute_url(self):
         return reverse("item-detail", kwargs={"pk": self.pk})

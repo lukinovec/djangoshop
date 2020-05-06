@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from PIL import Image
 
 
 class Profile(models.Model):
@@ -10,9 +9,9 @@ class Profile(models.Model):
         max_length=300,
     )
     description = models.TextField(
-        default="Popisek profilu můžete změnit na stránce profilu", max_length=200,
+        default="You can change the description on your profile page", max_length=200,
     )
     currency = models.IntegerField(default=1000)
 
     def __str__(self):
-        return f"{self.user.username} Profile"
+        return f"{self.user.username}'s Profile"
