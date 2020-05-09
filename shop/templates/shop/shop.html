@@ -5,8 +5,8 @@
 {% for item in items %}
 {% if item.for_sale == True %}
 <div class="row mb-3">
-	<div class="col-sm-3 border text-center">
-		<h3 style="margin-top: 25%"><a href="#">{{ item.seller }}</a> is the seller</h3>
+	<div class="col-sm-3 border text-center" style="overflow-x: scroll">
+		<h3 style="margin-top: 25%">{{ item.seller }} is the seller</h3>
 		<img class="mx-auto d-flex flex-wrap justify-content-center" src="{{ item.seller.profile.image }}" style="width:70%;">
 		<p class="text-muted">{{ item.seller.profile.description }}</p>
 	</div>
@@ -14,7 +14,7 @@
 		<div class="text-center ml-4 mr-4 mb-2" style="overflow-y: scroll">
 			<a href="{% url 'item-detail' item.id  %}"><h1 style="margin-top: 3%"> {{ item.itemname }} </h1></a>
 			<img src="{{ item.image }}" class="rounded mx-auto d-flex flex-wrap justify-content-center" style="width: 200px; height: 200px">
-			<h3> {{ item.price }} CC </h3>
+			<h3> {{ item.price }} coins </h3>
 			<p> {{ item.about }} </p>
 			{% if item.original != '<django.db.models.fields.related.ForeignKey>' %}
 			<small class="text-muted">Originally sold by {{ item.original }}</small>

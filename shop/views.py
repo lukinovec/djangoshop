@@ -32,7 +32,6 @@ class ItemListView(ListView):
     context_object_name = "items"
     ordering = ["-id"]
     paginate_by = 4
-    queryset = Item.objects.all()
 
 
 # Render item details
